@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 340px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #fafafa;
+      margin: 0;
+    }
+    h2 {
+      font-size: 18px;
+      margin: 0 0 16px 0;
+      color: #2c3e50;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .theme-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .theme-btn {
+      flex: 1;
+      padding: 8px 0;
+      border: 2px solid transparent;
+      border-radius: 20px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .theme-btn.cream {
+      background: #fef9e7;
+      color: #2c3e50;
+    }
+    .theme-btn.softBlue {
+      background: #e8f0fe;
+      color: #1e2b3c;
+    }
+    .theme-btn.lightGreen {
+      background: #eaf7e1;
+      color: #1d3b1d;
+    }
+    .theme-btn.lavender {
+      background: #f3e5f5;
+      color: #4a148c;
+    }
+    .theme-btn.softYellow {
+      background: #fff9c4;
+      color: #f57f17;
+    }
+    .theme-btn.mint {
+      background: #e0f2f1;
+      color: #00695c;
+    }
+    .theme-btn.active {
+      border-color: #4a90e2;
+    }
+    .action-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #4a90e2;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+    }
+    .action-btn.secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .action-btn.secondary:hover {
+      background: #e0e0e0;
+    }
+    .action-btn.clear-btn {
+      background: #fee;
+      color: #c0392b;
+    }
+    .action-btn.clear-btn:hover {
+      background: #fdd;
+    }
+    .style-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .style-btn {
+      width: 50px;
+      height: 40px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+    }
+    .style-btn:hover {
+      transform: scale(1.05);
+      border-color: #4a90e2;
+    }
+    .style-btn.red-bg { background: #ffcccc; border-left: 4px solid #ff6666; }
+    .style-btn.yellow-bg { background: #ffff99; border-left: 4px solid #ffcc00; }
+    .style-btn.blue-bg { background: #cce5ff; border-left: 4px solid #3399ff; }
+    .style-btn.bold { font-weight: bold; background: #f5f5f5; }
+    .style-btn.underline { text-decoration: underline; background: #f5f5f5; }
+    .style-btn.red-text { color: #cc0000; font-weight: bold; background: #ffe6e6; }
+    .stats {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 16px;
+      border: 1px solid #eee;
+    }
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #2c3e50;
+      margin-bottom: 6px;
+    }
+    .tip {
+      background: #e3f2fd;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #0d47a1;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧠 ADHD 阅读助手</h2>
+
+  <div class="section">
+    <div class="section-title">🎯 一键ADHD格式</div>
+    <div class="theme-buttons" style="flex-wrap: wrap;">
+      <button class="theme-btn cream" data-theme="cream">奶油</button>
+      <button class="theme-btn softBlue" data-theme="softBlue">柔蓝</button>
+      <button class="theme-btn lightGreen" data-theme="lightGreen">浅绿</button>
+      <button class="theme-btn lavender" data-theme="lavender">薰衣草</button>
+      <button class="theme-btn softYellow" data-theme="softYellow">柔黄</button>
+      <button class="theme-btn mint" data-theme="mint">薄荷</button>
+    </div>
+    <button class="action-btn secondary" id="removeADHD" style="margin-top:10px;">恢复默认样式</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📖 阅读辅助</div>
+    <button class="action-btn" id="toggleGuideLine">启用文本指引线</button>
+    <button class="action-btn secondary" id="toggleFocusMode">启用专注模式</button>
+    <button class="action-btn secondary" id="textToSpeech" style="margin-top: 8px;">朗读选中文字</button>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚙️ 个性化设置</div>
+    <div style="margin-bottom: 12px;">
+      <label style="display: block; margin-bottom: 6px; font-size: 13px; color: #4a5568;">字体大小: <span id="fontSizeValue">16</span>px</label>
+      <input type="range" id="fontSizeSlider" min="12" max="24" value="16" style="width: 100%;">
+    </div>
+    <div style="margin-bottom: 12px;">
+      <label style="display: block; margin-bottom: 6px; font-size: 13px; color: #4a5568;">行间距: <span id="lineHeightValue">1.6</span></label>
+      <input type="range" id="lineHeightSlider" min="1.2" max="2.2" step="0.1" value="1.6" style="width: 100%;">
+    </div>
+    <div>
+      <label style="display: block; margin-bottom: 6px; font-size: 13px; color: #4a5568;">专注提醒: <span id="reminderValue">25</span>分钟</label>
+      <input type="range" id="reminderSlider" min="5" max="60" step="5" value="25" style="width: 100%;">
+      <button class="action-btn secondary" id="toggleReminder" style="margin-top: 8px;">启用专注提醒</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">✍️ 手动高亮（先选中文字）</div>
+    <div class="style-grid">
+      <div class="style-btn red-bg" data-style="red-bg" title="红色背景"></div>
+      <div class="style-btn yellow-bg" data-style="yellow-bg" title="黄色背景"></div>
+      <div class="style-btn blue-bg" data-style="blue-bg" title="蓝色背景"></div>
+      <div class="style-btn bold" data-style="bold" title="加粗">B</div>
+      <div class="style-btn underline" data-style="underline" title="下划线">U</div>
+      <div class="style-btn red-text" data-style="red-text" title="红色文字">A</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="action-btn secondary" id="clearPageHighlights">清除当前页面高亮</button>
+    <button class="action-btn clear-btn" id="clearAllHighlights">清除所有保存的高亮</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">📊 本页高亮: <span id="pageCount">0</span></div>
+    <div class="stat-item">💾 总计: <span id="totalCount">0</span></div>
+  </div>
+
+  <div class="tip">
+    💡 提示：一键ADHD格式会整体调整文字为深色、加粗，并应用柔和背景。手动高亮支持多种样式，选中文字后点击对应按钮即可。
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
